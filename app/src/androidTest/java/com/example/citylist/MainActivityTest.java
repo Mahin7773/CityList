@@ -77,17 +77,50 @@ public class MainActivityTest {
     }
 
     @Test
-    public void testShowActivityFunctions(){
+    public void testShowActivity(){
         onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
-        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Example")); //Type a city name
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Example1")); //Type a city name
         onView(withId(R.id.button_confirm)).perform(click()); //Confirm the city name and add to the list
         Espresso.pressBack();
-        onData(anything()).inAdapterView(withId(R.id.city_list)).atPosition(0).perform(click());//click on the first item on the list
 
+        onView(withId(R.id.button_add)).perform(click());
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Example2"));
+        onView(withId(R.id.button_confirm)).perform(click());
+        Espresso.pressBack();
+
+        onView(withId(R.id.button_add)).perform(click());
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Example3"));
+        onView(withId(R.id.button_confirm)).perform(click());
+        Espresso.pressBack();
+
+        onView(withId(R.id.button_add)).perform(click());
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Example4"));
+        onView(withId(R.id.button_confirm)).perform(click());
+        Espresso.pressBack();
+
+        onData(anything()).inAdapterView(withId(R.id.city_list)).atPosition(0).perform(click());//click on the first item on the list
         onView(withId(R.id.show)).check(matches(isDisplayed()));//check if ShowActivity started properly
-        onView(withText("Example")).check(matches(isDisplayed()));//check if text is shown properly
+        onView(withText("Example1")).check(matches(isDisplayed()));//check if text is shown properly
         onView(withId(R.id.button)).perform(click());//click the Go Back button
         onView(withId(R.id.main)).check(matches(isDisplayed()));//check if MainActivity started properly
+
+        onData(anything()).inAdapterView(withId(R.id.city_list)).atPosition(1).perform(click());
+        onView(withId(R.id.show)).check(matches(isDisplayed()));
+        onView(withText("Example2")).check(matches(isDisplayed()));
+        onView(withId(R.id.button)).perform(click());
+        onView(withId(R.id.main)).check(matches(isDisplayed()));
+
+        onData(anything()).inAdapterView(withId(R.id.city_list)).atPosition(2).perform(click());
+        onView(withId(R.id.show)).check(matches(isDisplayed()));
+        onView(withText("Example3")).check(matches(isDisplayed()));
+        onView(withId(R.id.button)).perform(click());
+        onView(withId(R.id.main)).check(matches(isDisplayed()));
+
+        onData(anything()).inAdapterView(withId(R.id.city_list)).atPosition(3).perform(click());
+        onView(withId(R.id.show)).check(matches(isDisplayed()));
+        onView(withText("Example4")).check(matches(isDisplayed()));
+        onView(withId(R.id.button)).perform(click());
+        onView(withId(R.id.main)).check(matches(isDisplayed()));
     }
 
 }
