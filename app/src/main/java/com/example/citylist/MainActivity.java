@@ -1,8 +1,12 @@
 package com.example.citylist;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         nameField = findViewById(R.id.field_nameEntry);
-        newName  = findViewById(R.id.editText_name);
+        newName = findViewById(R.id.editText_name);
 
         cityList = findViewById(R.id.city_list);
         dataList = new ArrayList<>();
@@ -56,7 +60,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        cityList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(MainActivity.this, ShowActivity.class);
+                intent.putExtra("clickedIndex",dataList.get(i));
+                startActivity(intent);
+            }
+        });
     }
-
-
 }
